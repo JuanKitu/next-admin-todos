@@ -5,16 +5,17 @@ import {usePathname} from "next/navigation";
 interface Props {
     title: string;
     icon: React.ReactNode;
-    url: string;
+    path: string;
 }
-export function SidebarItem({title, icon, url}: Props) {
+export function SidebarItem({title, icon, path}: Props) {
     const currentPath = usePathname();
     return (
         <li>
-            <Link href={url}
+            <Link href={path}
                   className={
                 `relative px-4 py-3 flex items-center space-x-4
-                ${currentPath === url ? 'rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'rounded-md text-gray-600 group'}
+                ${currentPath === path ? 'rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 
+                    'rounded-md text-gray-600 group hover:bg-gradient-to-r hover:bg-sky-600 hover:text-white'}
                 `}
             >
                 {icon}
