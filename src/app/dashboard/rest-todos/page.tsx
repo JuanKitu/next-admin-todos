@@ -1,6 +1,6 @@
 import React from 'react'
 import {Metadata} from "next";
-import {TodoGrid} from "@/todos";
+import {NewTodo, TodoGrid} from "@/todos";
 import prisma from "@/lib/prisma";
 export const metadata: Metadata = {
     title: 'Listado de TODOS',
@@ -11,6 +11,11 @@ export default async function RestTodoPage() {
         orderBy: { description: 'asc' }
     });
     return (
-        <TodoGrid todos={todos}/>
+        <>
+            <div className="w-29/30 px-3 mx-7 mb-5">
+                <NewTodo />
+            </div>
+            <TodoGrid todos={todos}/>
+        </>
     )
 }
