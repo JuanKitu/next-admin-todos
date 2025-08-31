@@ -2,13 +2,20 @@ import {CiLogout} from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
 import {SidebarItem} from "./SidebarItem";
-import {IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOutline, IoListOutline} from "react-icons/io5";
+import {
+    IoBasketOutline,
+    IoCalendarOutline,
+    IoCheckboxOutline,
+    IoCodeWorkingOutline,
+    IoListOutline
+} from "react-icons/io5";
 export function Sidebar() {
     const menuItem = [
         {title: 'Dashboard', icon: <IoCalendarOutline size={30} />, path: '/dashboard'},
         {title: 'Rest TODO', icon: <IoCheckboxOutline size={30} />, path: '/dashboard/rest-todos'},
         {title: 'Server Actions', icon: <IoListOutline size={30} />, path: '/dashboard/server-todos'},
         {title: 'Cookies', icon: <IoCodeWorkingOutline size={30} />, path: '/dashboard/cookies'},
+        {title: 'Productos', icon: <IoBasketOutline size={30} />, path: '/dashboard/products'},
     ]
     return (
         <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
