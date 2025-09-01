@@ -1,7 +1,14 @@
 import React from 'react'
-import {CiBellOn, CiChat1, CiMenuBurger, CiSearch} from "react-icons/ci";
+import {CiChat1, CiMenuBurger, CiSearch, CiShoppingBasket} from "react-icons/ci";
+import {cookies} from "next/headers";
 
-export function TopMenu() {
+export async function TopMenu() {
+    const cookiesStore = await cookies();
+    const cart = JSON.parse(cookiesStore.get('cart')?.value ?? '{}');
+    const getTotalCount = () => {
+        // @ts-ignore
+        return Object.values(cart).reduce((acc, item) => acc + item, 0) as number;
+    }
     return (
         <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
 
@@ -25,8 +32,11 @@ export function TopMenu() {
                     <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                         <CiChat1 size={25} />
                     </button>
-                    <button className="flex items-center justify-center w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
-                        <CiBellOn size={25}/>
+                    <button className="p-2 flex items-center justify-center h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+                        <span className="text-sm mr-2">
+                            { getTotalCount() }
+                        </span>
+                        <CiShoppingBasket size={25}/>
                     </button>
                 </div>
             </div>
