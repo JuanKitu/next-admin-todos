@@ -7,7 +7,8 @@ import {
     IoCalendarOutline,
     IoCheckboxOutline,
     IoCodeWorkingOutline,
-    IoListOutline
+    IoListOutline,
+    IoPersonOutline
 } from "react-icons/io5";
 import {getServerSession} from "next-auth";
 export async function Sidebar() {
@@ -17,6 +18,7 @@ export async function Sidebar() {
         {title: 'Server Actions', icon: <IoListOutline size={30} />, path: '/dashboard/server-todos'},
         {title: 'Cookies', icon: <IoCodeWorkingOutline size={30} />, path: '/dashboard/cookies'},
         {title: 'Productos', icon: <IoBasketOutline size={30} />, path: '/dashboard/products'},
+        {title: 'Perfil', icon: <IoPersonOutline size={30} />, path: '/dashboard/profile'},
     ];
     const session = await getServerSession();
     return (
