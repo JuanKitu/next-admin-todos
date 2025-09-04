@@ -1,15 +1,23 @@
+import {redirect} from "next/navigation";
+
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 import React from 'react'
 import {Metadata} from "next";
 import {NewTodo, TodoGrid} from "@/todos";
 import prisma from "@/lib/prisma";
+import {getUserServerSession} from "@/auth/actions/auth.actions";
 export const metadata: Metadata = {
     title: 'Listado de TODOS',
     description: 'SEO title'
 }
+
 export default async function ServerTodoPage() {
+    const user = await getUserServerSession();
+    if(!user) redirect('/api/auth/signin');
+
     const todos = await prisma.todo.findMany({
+        where: { userId: user.id },
         orderBy: { description: 'asc' }
     });
     return (

@@ -2,6 +2,7 @@
 import {Todo} from "@prisma/client";
 import prisma from "@/lib/prisma";
 import {revalidatePath} from "next/cache";
+import {getUserServerSession} from "@/auth/actions/auth.actions";
 
 export async function toggleTodo(id:string, complete:boolean): Promise<Todo> {
     const todo = await prisma.todo.findFirst({
@@ -23,7 +24,9 @@ export async function toggleTodo(id:string, complete:boolean): Promise<Todo> {
 }
 export async function addTodo( description: string ){
     try {
-        const todo = await prisma.todo.create({ data: { description } })
+        const user = await getUserServerSession();
+        if(!user) return;
+        const todo = await prisma.todo.create({ data: { description, userId: user.id } })
         revalidatePath('/dashboard/rest-todos');
         return todo;
     } catch (error) {
