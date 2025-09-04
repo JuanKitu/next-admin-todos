@@ -7,7 +7,6 @@ export const NewTodo = () => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(description.trim().length === 0) return;
-        console.log('submit');
         await addTodo(description);
         setDescription('');
     }
