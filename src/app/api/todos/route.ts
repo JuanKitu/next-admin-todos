@@ -48,9 +48,12 @@ export async function POST(request: Request) {
 export async function DELETE() {
 
     try {
+        const user = await getUserServerSession();
+        if (!user) return NextResponse.json('No autorizado', {status: 401});
         const todo = await prisma.todo.deleteMany({
             where: {
-                complete: true
+                complete: true,
+                userId: user.id,
             }
         });
         return NextResponse.json(todo);
