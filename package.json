@@ -16,6 +16,7 @@
     "@types/react": "19.1.11",
     "@types/react-dom": "19.1.8",
     "autoprefixer": "10.4.14",
+    "bcryptjs": "^3.0.2",
     "cookies-next": "^6.1.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.6",
@@ -30,6 +31,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "prisma": "^4.15.0"
   }
 }
